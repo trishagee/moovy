@@ -1,13 +1,10 @@
 package com.mechanitis.moovy
 
-import com.mongodb.BasicDBObject
-import com.mongodb.DBObject
-
 class Document implements Map<String, Object> {
-    final BasicDBObject delegate
+    final org.mongodb.Document delegate
 
     Document(final String key, final String value) {
-        delegate = new BasicDBObject(key, value)
+        delegate = new org.mongodb.Document(key, value)
     }
 
     Document append(final String key, final Object value) {
@@ -16,12 +13,12 @@ class Document implements Map<String, Object> {
     }
 
     Document(final Map<String, Object> map) {
-        delegate = new BasicDBObject(map)
+        delegate = new org.mongodb.Document(map)
     }
 
     @Override
     int size() {
-        throw new UnsupportedOperationException('Not implemented yet!')
+        delegate.size()
     }
 
     @Override
@@ -84,7 +81,7 @@ class Document implements Map<String, Object> {
         delegate.toString()
     }
 
-    DBObject getDBObject() {
+    protected org.mongodb.Document getDocument() {
         delegate
     }
 }

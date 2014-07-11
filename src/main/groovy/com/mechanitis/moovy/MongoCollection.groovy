@@ -1,21 +1,18 @@
 package com.mechanitis.moovy
 
-import com.mongodb.DBCollection
-import com.mongodb.DBCursor
+class MongoCollection<T> {
+    final org.mongodb.MongoCollection<T> delegate;
 
-class MongoCollection {
-    final DBCollection delegate;
-
-    protected MongoCollection(final DBCollection collection) {
+    protected MongoCollection(final org.mongodb.MongoCollection collection) {
         delegate = collection;
     }
 
     void insert(final Document document) {
-        delegate.insert(document.getDBObject());
+        delegate.insert(document.getDocument());
     }
 
     MongoCursor find() {
-        DBCursor dbCursor = delegate.find();
+        org.mongodb.MongoCursor dbCursor = delegate.find();
         new MongoCursor(dbCursor);
     }
 }

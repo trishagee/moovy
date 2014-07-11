@@ -1,21 +1,18 @@
 package com.mechanitis.moovy;
 
-import com.mongodb.DB;
-import com.mongodb.DBCollection;
-
 class MongoDatabase {
-    final DB delegate;
+    final org.mongodb.MongoDatabase delegate;
 
-    protected MongoDatabase(final DB database) {
+    protected MongoDatabase(final org.mongodb.MongoDatabase database) {
         this.delegate = database;
     }
 
     MongoCollection getCollection(final String collectionName) {
-        DBCollection collection = delegate.getCollection(collectionName);
+        org.mongodb.MongoCollection<Document> collection = delegate.getCollection(collectionName);
         new MongoCollection(collection);
     }
 
     void dropDatabase() {
-        delegate.dropDatabase();
+        delegate.tools().drop();
     }
 }

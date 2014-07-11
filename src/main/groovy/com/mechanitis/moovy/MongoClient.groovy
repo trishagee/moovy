@@ -1,18 +1,21 @@
 package com.mechanitis.moovy
 
+import org.mongodb.MongoClients
+import org.mongodb.connection.ServerAddress
+
 class MongoClient implements Closeable {
-    final com.mongodb.MongoClient delegate;
+    final org.mongodb.MongoClient delegate;
 
     MongoClient() throws UnknownHostException {
-        this.delegate = new com.mongodb.MongoClient();
+        this.delegate = MongoClients.create(new ServerAddress())
     }
 
     MongoClient(final MongoClientURI uri) throws UnknownHostException {
-        this.delegate = new com.mongodb.MongoClient(uri.getMongoURI());
+        this.delegate = MongoClients.create(uri.getMongoURI());
     }
 
     MongoDatabase getDatabase(final String databaseName) {
-        new MongoDatabase(delegate.getDB(databaseName));
+        new MongoDatabase(delegate.getDatabase(databaseName));
     }
 
     @Override

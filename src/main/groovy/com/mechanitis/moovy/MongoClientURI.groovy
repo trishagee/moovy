@@ -1,13 +1,13 @@
 package com.mechanitis.moovy;
 
 class MongoClientURI {
-    final com.mongodb.MongoClientURI delegate;
+    final org.mongodb.MongoClientURI delegate;
 
     MongoClientURI(final String uri) {
-        delegate = new com.mongodb.MongoClientURI(uri);
+        delegate = new org.mongodb.MongoClientURI(uri);
     }
 
-    protected com.mongodb.MongoClientURI getMongoURI() {
+    protected org.mongodb.MongoClientURI getMongoURI() {
         delegate;
     }
 }

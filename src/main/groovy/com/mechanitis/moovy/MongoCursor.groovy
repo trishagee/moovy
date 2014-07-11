@@ -1,11 +1,9 @@
-package com.mechanitis.moovy;
-
-import com.mongodb.DBCursor;
+package com.mechanitis.moovy
 
 class MongoCursor {
-    final DBCursor delegate;
+    final org.mongodb.MongoCursor delegate;
 
-    protected MongoCursor(final DBCursor dbCursor) {
+    protected MongoCursor(final org.mongodb.MongoCursor dbCursor) {
         delegate = dbCursor;
     }
 
